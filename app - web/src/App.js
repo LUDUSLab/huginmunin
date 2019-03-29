@@ -17,8 +17,8 @@ class App extends Component {
 }
 
   getPhoto() {
-        alert("entrou aqui2")
-        fetch('http://172.26.250.145:8000/takephoto').then((response) => {
+        fetch('http://172.26.215.47:8000/takephoto', { method: 'GET',
+        mode: 'no-cors',}).then((response) => {
           console.log(response);
           this.setState({image: response});
           alert("response");
@@ -52,8 +52,8 @@ class App extends Component {
             src="http://172.26.250.145:8000/video_feed"
           />
     </div>*/}
-        <div className={classes.imageContainer}><img className={classes.image} src="http://172.26.250.145:8000/video_feed"></img></div>
-        <img>
+        <div className={classes.imageContainer}><img className={classes.image} src="http://172.26.215.47:8000/video_feed"></img></div>
+        <img src={this.state.image}>
           
         </img>
         <div className={classes.buttonContainer}>
