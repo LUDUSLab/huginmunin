@@ -17,13 +17,16 @@ class App extends Component {
 }
 
   getPhoto() {
-        fetch('http://172.26.215.47:8000/takephoto', { method: 'GET',
-        mode: 'no-cors',}).then((response) => {
-          console.log(response);
-          this.setState({image: response});
-          alert("response");
+        fetch('http://172.26.215.47:8001/takephoto?v=' + Date.now(), { method: 'GET',
+        mode: 'cors',      }).then((response) => {
+          response.json().then(data => {
+            console.log(data);
+            this.setState({
+              image : data.image
+            })
+          });
         }).catch((e) => {
-          alert("deu pau")
+          alert(e)
         });
   }
 
@@ -52,10 +55,11 @@ class App extends Component {
             src="http://172.26.250.145:8000/video_feed"
           />
     </div>*/}
-        <div className={classes.imageContainer}><img className={classes.image} src="http://172.26.215.47:8000/video_feed"></img></div>
-        <img src={this.state.image}>
+        <div className={classes.imageContainer}>
+          <img className={classes.image} src="http://172.26.215.47:8000/video_feed"></img>
+          <img src={'data:image/png;base64,' + this.state.image}></img>
+        </div>
           
-        </img>
         <div className={classes.buttonContainer}>
           <MuiThemeProvider theme={theme}>
             <Fab color="primary" className={classes.fab} onClick={() => this.getPhoto()}>
