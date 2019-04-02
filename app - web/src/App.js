@@ -72,7 +72,7 @@ class App extends Component {
           
         <div className={classes.buttonContainer}>
           <MuiThemeProvider theme={theme}>
-            <Fab color="primary" className={classes.fab} onClick={() => this.getPhoto()}>
+            <Fab color="secondary" className={classes.fab} onClick={() => this.getPhoto()}>
               <CameraAlt />
             </Fab>
           </MuiThemeProvider>
