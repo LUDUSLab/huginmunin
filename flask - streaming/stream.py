@@ -1,26 +1,20 @@
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 from flask import Flask, render_template, Response, send_file
+from flask_cors import CORS
 import cv2
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)
 @app.route('/')
 def index():
     return render_template('camerasFront.html')
 
-@app.route('/takephoto')
-def take_photos():
-	try:
-		return send_file('t.jpg', attachment_filename='foto.jpg')
-	except Exception as e:
-		return str(e)
-	pass
-
 def camera():
 	cap = PiCamera()
 	cap.resolution = (640, 480)
-	cap.framerate = 16
+	cap.framerate = 32
 	rawCapture = PiRGBArray(cap, size=(640, 480))
 	
 	print("tamo aqui")
@@ -52,6 +46,7 @@ def stream():
 		cv2.imwrite('t.jpg', img_cv)
 		rawCapture.truncate(0)
 		yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
+		#yield base64.b64encode(open('t.jpg', 'rb').read())
 		#rawCapture.truncate(0)
 
 
@@ -70,6 +65,5 @@ def video_feed():
     return Response(camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-	camera()
 	app.run(host='0.0.0.0', port='8000', debug=False)
 

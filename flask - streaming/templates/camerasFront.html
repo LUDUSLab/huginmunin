@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Streaming Demonstration</title>
+  </head>
+  <body>
+    <h1>Video Streaming Demonstration</h1>
+    <p>    
+	<img src="{{ url_for('video_feed') }}">
+    </p>
+    <p>
+	<form action="/takephoto" method="get">
+    	<button name="Foto" type="submit">Foto</button>
+	</form>
+    </p>  
+  </body>
+</html>
