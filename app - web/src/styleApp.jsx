@@ -1,16 +1,16 @@
 const styleApp = {
-    videoContainer:{
-        width: "100% !important",
-        height: "50% !important"
-    },
-    video:{
-        marginBottom:"0 !important",
-        padding:"50vh !important"
+    image:{
+        height:"43vh",
+        borderStyle:"none",
+        borderRadius:"15px",
+        webkitBoxShadow: "0px 0px 41px -8px rgba(0,0,0,0.45)",
+        mozBoxShadow: "0px 0px 41px -8px rgba(0,0,0,0.45)",
+        boxShadow: "0px 0px 41px -8px rgba(0,0,0,0.45)"
     },
     buttonContainer:{
         //paddingTop: "15px",
         //paddingBottom: "15px",
-        top:"50%",
+        bottom:"25px",
         right:"15px",
         position:"absolute",
         //backgroundColor:"#383838",
@@ -19,6 +19,12 @@ const styleApp = {
     },
     imageContainer:{
         textAlign: "center"
+    },
+    videoContainer:{
+        marginTop:"2vh",
+    },
+    screenshotContainer:{
+        marginTop:"2vh",
     }
 }
 export default styleApp;

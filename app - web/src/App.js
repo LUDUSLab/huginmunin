@@ -6,7 +6,7 @@ import CameraAlt from '@material-ui/icons/CameraAlt';
 import blue from '@material-ui/core/colors/blue';
 import { Player } from 'video-react';
 import "../node_modules/video-react/dist/video-react.css"; 
-
+import camera from './assets/default.jpg';
 class App extends Component {
 
   constructor(props) {
@@ -28,6 +28,10 @@ class App extends Component {
         }).catch((e) => {
           alert(e)
         });
+  }
+
+  handleError(e){
+    e.target.src = camera;
   }
 
   render() {
@@ -56,8 +60,14 @@ class App extends Component {
           />
     </div>*/}
         <div className={classes.imageContainer}>
-          <img className={classes.image} src="http://172.26.215.47:8000/video_feed"></img>
-          <img src={'data:image/png;base64,' + this.state.image}></img>
+          <div className={classes.videoContainer}>
+            <h3>Gravação Ao Vivo</h3>
+            <img className={classes.image} src="http://172.26.215.47:8000/video_feed" onError={this.handleError}></img>
+          </div>
+          <div className={classes.screenshotContainer}>
+            <h3>Screenshot</h3>
+            <img className={classes.image} src={'data:image/png;base64,' + this.state.image} onError={this.handleError}></img>
+          </div>
         </div>
           
         <div className={classes.buttonContainer}>
@@ -73,4 +83,3 @@ class App extends Component {
 }
 
 export default withStyles(styleApp)(App);
-
