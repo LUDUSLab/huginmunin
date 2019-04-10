@@ -6,10 +6,10 @@ import { Block, Text, theme } from "galio-framework";
 
 import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
-import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
+import CameraScreen from '../screens/Camera';
 
 import Menu from './Menu';
 import Header from '../components/Header';
@@ -82,6 +82,12 @@ const HomeStack = createStackNavigator({
       header: <Header search tabs title="Home" navigation={navigation} />,
     })
   },
+  Camera: {
+    screen: CameraScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header title="Camera" navigation={navigation} />
+    })
+  },
   Settings: {
     screen: SettingsScreen,
     navigationOptions: ({navigation}) => ({
@@ -118,12 +124,6 @@ const HomeStack = createStackNavigator({
 
 const AppStack = createDrawerNavigator(
   {
-    Onboarding: {
-      screen: OnboardingScreen,
-      navigationOptions: {
-        drawerLabel: () => {},
-      },
-    },
     Dashboard: {
       screen: HomeStack,
       navigationOptions: (navOpt) => ({
@@ -132,36 +132,12 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
-    Woman: {
-      screen: ProScreen,
+    Camera: {
+      screen: CameraScreen,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="Woman" />
-        ),
-      }),
-    },
-    Man: {
-      screen: ProScreen,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="Man" />
-        ),
-      }),
-    },
-    Kids: {
-      screen: ProScreen,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="Kids" />
-        ),
-      }),
-    },
-    NewCollection: {
-      screen: ProScreen,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="New Collection" />
-        ),
+          <Drawer focused={focused} screen="Camera" title="Camera"/>
+        )
       }),
     },
     Profile: {

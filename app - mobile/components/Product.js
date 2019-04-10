@@ -14,15 +14,15 @@ class Product extends React.Component {
 
     return (
       <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('', { product: product })}>
           <Block flex style={[styles.imageContainer, styles.shadow]}>
             <Image source={{ uri: product.image }} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('', { product: product })}>
           <Block flex space="between" style={styles.productDescription}>
             <Text size={14} style={styles.productTitle}>{product.title}</Text>
-            <Text size={12} muted={!priceColor} color={priceColor}>${product.price}</Text>
+            <Text size={12} muted={!priceColor} color={priceColor}>{product.price}</Text>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
