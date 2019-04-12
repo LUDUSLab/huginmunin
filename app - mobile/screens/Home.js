@@ -24,7 +24,7 @@ export default class Home extends React.Component {
     )
   }
   
-  renderTabs = () => {
+  /*renderTabs = () => {
     const { navigation } = this.props;
 
     return (
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
         </Button>
       </Block>
     )
-  }
+  }*/ 
 
   renderProducts = () => {
     return (
