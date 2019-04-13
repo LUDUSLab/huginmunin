@@ -4,6 +4,8 @@ import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
 
+import {Video} from 'expo';
+
 const { width } = Dimensions.get('screen');
 import camera from '../constants/camera';
 
@@ -18,7 +20,18 @@ export default class Camera extends React.Component {
         contentContainerStyle={styles.products}>
         <Block flex>
           <Product product={camera[0]} full />
-          <Product product={camera[1]} full />
+          <Block flex space="between" style={styles.productDescription}>
+            <Video
+              source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+              rate={1.0}
+              volume={1.0}
+              isMuted={false}
+              resizeMode="cover"
+              shouldPlay
+              isLooping
+              style={{ width: 300, height: 300 }}
+            />
+          </Block>
         </Block>
       </ScrollView>
     )
@@ -73,5 +86,8 @@ const styles = StyleSheet.create({
   products: {
     width: width - theme.SIZES.BASE * 2,
     paddingVertical: theme.SIZES.BASE * 2,
+  },
+  productDescription: {
+    padding: theme.SIZES.BASE / 2,
   },
 });
