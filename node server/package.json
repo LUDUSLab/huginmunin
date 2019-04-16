@@ -1,0 +1,16 @@
+{
+  "name": "node-server",
+  "version": "1.0.0",
+  "description": "KAM node server",
+  "main": "hello.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "matheus",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4",
+    "helmet": "^3.16.0"
+  }
+}
