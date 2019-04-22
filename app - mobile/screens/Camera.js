@@ -8,6 +8,7 @@ import {Video} from 'expo';
 
 const { width } = Dimensions.get('screen');
 import camera from '../constants/camera';
+import materialTheme from '../constants/';
 
 export default class Camera extends React.Component {
   renderTabs = () => {
@@ -20,18 +21,14 @@ export default class Camera extends React.Component {
         contentContainerStyle={styles.products}>
         <Block flex>
           <Product product={camera[0]} full />
-          <Block flex space="between" style={styles.productDescription}>
-            <Video
-              source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-              rate={1.0}
-              volume={1.0}
-              isMuted={false}
-              resizeMode="cover"
-              shouldPlay
-              isLooping
-              style={{ width: 300, height: 300 }}
-            />
-          </Block>
+          <Button
+                shadowless
+                style={styles.button}
+                color="info"
+                onPress={() => fetch('http://172.26.252.178:8000/animate/blink') 
+                }>
+                ANIMATE CAMERA
+          </Button>
         </Block>
       </ScrollView>
     )
