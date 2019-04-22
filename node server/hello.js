@@ -1,12 +1,11 @@
 #!/usr/bin/env nodejs
 const express = require('express');
 const helmet = require('helmet');
-const fileType = require('file-type');
 const multer  = require('multer')
-const fs = require('fs');
 const app = express();
+const rp = require('request-promise');
 const accepted_extensions = ['jpg', 'png', 'gif'];
-
+const cameraIp = 'http://localhost:5000/'
 app.use(helmet());
 
 const storage = multer.diskStorage({
@@ -33,6 +32,16 @@ app.get('/', function(req, res){
 app.post('/upload', upload.single('media'), function (req, res, next) {
   res.send("UPLOAD")
 })
+
+app.get('/animate/:anim', function(req, res){  
+    rp(cameraIp + req.params.anim).then(function (res) {
+      console.log(res);
+    })
+    .catch(function (err) {
+      console.log(err.statusCode);
+    });
+    res.send('animate')
+});
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
