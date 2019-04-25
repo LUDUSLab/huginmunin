@@ -25,7 +25,10 @@ export default class Camera extends React.Component {
                 shadowless
                 style={styles.button}
                 color="info"
-                onPress={() => fetch('http://172.26.252.178:8000/animate/blink') 
+                onPress={() => {
+                  fetch('http://172.26.252.178:8000/animate/blink');
+                  camera[0].image = 'http://172.26.252.178:8000/lastphoto';
+                }
                 }>
                 ANIMATE CAMERA
           </Button>

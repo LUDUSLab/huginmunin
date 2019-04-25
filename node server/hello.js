@@ -1,5 +1,6 @@
 #!/usr/bin/env nodejs
 const express = require('express');
+const fs = require('fs');
 const helmet = require('helmet');
 const multer  = require('multer')
 const app = express();
@@ -15,7 +16,8 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
       // error first callback
-      cb(null, file.fieldname + '-' + Date.now() + '.png') 
+      lastPhoto = 'media-'+Date.now() + '.png'
+      cb(null, lastPhoto)
   }
 });
 var upload = multer({ storage, fileFilter: (req, file, cb) => {
@@ -31,6 +33,12 @@ app.get('/', function(req, res){
 
 app.post('/upload', upload.single('media'), function (req, res, next) {
   res.send("UPLOAD")
+})
+
+app.get('/lastphoto', function (req, res, next) {
+  var files = fs.readdirSync('./uploads');
+  var last = files.length-1
+  res.sendFile(files[last], {root:'./uploads'})
 })
 
 app.get('/animate/:anim', function(req, res){  
