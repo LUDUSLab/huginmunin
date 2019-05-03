@@ -27,8 +27,9 @@ var upload = multer({ storage, fileFilter: (req, file, cb) => {
   return cb(new Error('Only ' + accepted_extensions.join(", ") + ' files are allowed!'));
 }})
 
-app.get('/', function(req, res){  
-  res.send("HEY");
+app.get('/', function(req, res){
+  console.log('Entrou!')
+  res.send(200, "HEY");
 });
 
 app.post('/upload', upload.single('media'), function (req, res, next) {

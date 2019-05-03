@@ -1,19 +1,26 @@
-version: "3"
+version: '3.7'
+
 services:
-  web:
-    # replace username/repo:tag with your name and image details
-    image: emorais1375/kam:part2
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
     ports:
-      - "4000:80"
+      - 8080:80
+    depends_on:
+      - nodeserver
     networks:
-      - webnet
+      - my-network-name
+
+  nodeserver:
+    build: ./node_server
+    container_name: nodeserver
+    ports:
+      - 8000:8000
+    expose:
+      - "8000"
+    networks:
+      - my-network-name
+
 networks:
-  webnet:
+  my-network-name:
