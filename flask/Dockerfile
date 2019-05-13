@@ -1,13 +1,11 @@
-FROM python:3
+FROM python:latest
 
 WORKDIR /app
 
-COPY docker/flask/uwsgi.ini .
-COPY app.py .
-COPY requirements.txt .
+COPY . .
 
 EXPOSE 5000
 
 RUN pip install -r requirements.txt
 
-CMD [ "uwsgi", "--ini", "uwsgi.ini" ]
+CMD [ "uwsgi", "--ini", "uwsgi.ini"
