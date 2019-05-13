@@ -11,6 +11,8 @@ services:
       - nodeserver
     networks:
       - my-network-name
+    links:
+      - nodeserver
 
   nodeserver:
     build: ./node_server
