@@ -9,10 +9,12 @@ services:
       - 8080:80
     depends_on:
       - nodeserver
+      - flaskserver
     networks:
       - my-network-name
     links:
       - nodeserver
+      - flaskserver
 
   nodeserver:
     build: ./node_server
@@ -21,6 +23,16 @@ services:
       - 8000:8000
     expose:
       - "8000"
+    networks:
+      - my-network-name
+
+  flaskserver:
+    build: ./flask
+    container_name: flaskserver
+    ports:
+      - 5001:5000
+    expose:
+      - "5000"
     networks:
       - my-network-name
 
