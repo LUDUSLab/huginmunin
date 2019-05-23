@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 8080:80
+    depends_on:
+      - nodeserver
+    networks:
+      - kam-network
+    links:
+      - nodeserver
+  nodeserver:
+    build: ./nodeserver
+    container_name: node
+    restart: always
+    ports:
+      - 8000:8000
+    expose:
+      - "8000"
+    depends_on:
+      - mongo
+    networks:
+      - kam-network
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+    networks:
+      - kam-network
+networks:
+  kam-network:
