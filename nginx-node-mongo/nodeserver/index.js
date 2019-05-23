@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //Connect to MongoDB
 mongoose
   .connect(
-    'mongodb://mongo:27017/docker-node-mongo',
+    'mongodb://mongo:27017/docker-nginx-node-mongo',
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))
@@ -31,14 +31,15 @@ app.get('/', (req, res) => {
     .catch(err => res.status(404).json({ msg: 'No items found' }));
 });
 
-// app.post('/item/add', (req, res) => {
-//   const newItem = new Item({
-//     name: req.body.name
-//   });
+ app.post('/item/add', (req, res) => {
+   const newItem = new Item({
+     name: req.body.name
+   });
 
-//   newItem.save().then(item => res.redirect('/'));
-// });
+   newItem.save().then(item => res.redirect('/'));
+ });
 
+ const port = 8000;
 app.listen(8000, function () {
   console.log('Example app listening on port 8000!');
 });
